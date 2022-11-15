@@ -4,18 +4,15 @@
 # LICENSE file in the root directory of this source tree.
 
 package = JSON.parse(File.read(File.expand_path('../../package.json', __dir__)))
-version = package['version']
+version = '1.14.0'
 
-source = {
-  :git => 'https://github.com/facebook/yoga.git',
-  :tag => spec.version.to_s,
-}
+source = { :git => 'https://github.com/facebook/yoga.git' }
 
 if version == '1000.0.0'
   # This is an unpublished version, use the latest commit hash of the react-native repo, which we’re presumably in.
   source[:commit] = `git rev-parse HEAD`.strip
 else
-  source[:tag] = "v#{version}"
+  source[:tag] = "#{version}"
 end
 
 Pod::Spec.new do |spec|
